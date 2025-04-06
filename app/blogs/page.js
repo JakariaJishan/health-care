@@ -56,7 +56,8 @@ export default function Blogs() {
     return (
         <div className="">
             {/* Header with gradient background */}
-            <div className="w-full h-[300px] bg-gradient-to-r from-[#68AAF0] to-[#6BAAF1] py-16 px-4 text-white relative">
+            <div
+                className="w-full h-[300px] bg-gradient-to-r from-[#68AAF0] to-[#6BAAF1] py-16 px-4 text-white relative">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                     <h1 className="text-4xl md:text-5xl font-bold mb-2">Latest News</h1>
                     <p className="text-xl">In Omni and all around the world</p>
@@ -64,39 +65,43 @@ export default function Blogs() {
             </div>
 
             <section className="relative overflow-hidden">
-                {/* Gradient background */}
+                {/* Gradient background - Hidden on mobile, visible on md and up */}
                 <div>
-                    <Image src="/images/green-ecllipse.png"
-                           width={0}
-                           height={0}
-                           alt={"Asdf"}
-                           sizes={"100vw"}
-                           priority
-                           className={"absolute top-0 left-0 w-auto h-full"}
+                    <Image
+                        src="/images/green-ecllipse.png"
+                        width={0}
+                        height={0}
+                        alt="Background"
+                        sizes="100vw"
+                        priority
+                        className="hidden md:block absolute top-0 left-0 w-auto h-full"
                     />
-                    <Image src="/images/red-ecllipse.png"
-                           width={0}
-                           height={0}
-                           alt={"Asdf"}
-                           sizes={"100vw"}
-                           priority
-                           className={"absolute top-20 left-0 w-auto h-full"}
+                    <Image
+                        src="/images/red-ecllipse.png"
+                        width={0}
+                        height={0}
+                        alt="Background"
+                        sizes="100vw"
+                        priority
+                        className="hidden md:block absolute top-20 left-0 w-auto h-full"
                     />
-                    <Image src="/images/green-ecllipse-right.png"
-                           width={0}
-                           height={0}
-                           alt={"Asdf"}
-                           sizes={"100vw"}
-                           priority
-                           className={"absolute top-0 right-0 w-auto h-full"}
+                    <Image
+                        src="/images/green-ecllipse-right.png"
+                        width={0}
+                        height={0}
+                        alt="Background"
+                        sizes="100vw"
+                        priority
+                        className="hidden md:block absolute top-0 right-0 w-auto h-full"
                     />
-                    <Image src="/images/red-ecllipse-right.png"
-                           width={0}
-                           height={0}
-                           alt={"Asdf"}
-                           sizes={"100vw"}
-                           priority
-                           className={"absolute top-20 right-0 w-auto h-full "}
+                    <Image
+                        src="/images/red-ecllipse-right.png"
+                        width={0}
+                        height={0}
+                        alt="Background"
+                        sizes="100vw"
+                        priority
+                        className="hidden md:block absolute top-20 right-0 w-auto h-full"
                     />
                 </div>
                 {/* Blog list section */}
@@ -144,7 +149,7 @@ export default function Blogs() {
                             {currentPosts.map((post) => (
                                 <div
                                     key={post.id}
-                                    className="flex flex-col md:flex-row bg-white overflow-hidden md:w-[calc(50%-0.5rem)]"
+                                    className="flex flex-col md:flex-row bg-white overflow-hidden md:w-[calc(50%-0.5rem)] relative z-0"
                                 >
                                     <div className="md:w-1/2 h-32 md:h-auto bg-gray-300 relative">
                                         <Image
@@ -164,7 +169,7 @@ export default function Blogs() {
                                         <div className="border-t border-gray-200 my-3"></div>
                                         <p className="text-gray-600 mb-4 text-sm">{post.excerpt}</p>
                                         <div className="flex justify-end">
-                                            <Link href={`/blogs/${post.id}`}>
+                                            <Link href={`/blogs/${post.id}`} className="relative z-10">
                                                 <Button variant="outline" size="sm" className="text-sm">
                                                     Learn More
                                                 </Button>
@@ -189,14 +194,14 @@ export default function Blogs() {
                                 </Button>
 
                                 {getPageNumbers().map((page, index) =>
-                                    page === "..." ? (
-                                        <span key={`ellipsis-${index}`} className="px-2">
-                                              ...
-                                            </span>
-                                    ) : (
-                                        <Button
-                                            key={`page-${page}`}
-                                            variant={currentPage === page ? "default" : "outline"}
+                                        page === "..." ? (
+                                            <span key={`ellipsis-${index}`} className="px-2">
+                  ...
+                </span>
+                                        ) : (
+                                            <Button
+                                                key={`page-${page}`}
+                                                variant={currentPage === page ? "default" : "outline"}
                                                 size="sm"
                                                 onClick={() => paginate(page)}
                                                 className={`w-8 h-8 p-0 ${currentPage === page ? "bg-gray-900 text-white" : "bg-white"}`}
